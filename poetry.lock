@@ -1,0 +1,15 @@
+[[package]]
+name = "sourcery-cli"
+version = "0.12.7"
+description = "Magically refactor Python"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[metadata]
+lock-version = "1.1"
+python-versions = "^3.7"
+content-hash = "60a2426e7af30d713227aaeecc99d6c79289008c543bb3375ca5b49df6aa8bd1"
+
+[metadata.files]
+sourcery-cli = []
