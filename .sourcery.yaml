@@ -38,7 +38,7 @@ rules: # A list of custom rules - see https://docs.sourcery.ai/custom_rules/
 # [2.2 Import Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#22-import-rules)
 # ----------------------------------------------------------------------------------
 # 
-# The rules in this section help in keeping imports intuitive and consistent.
+# The rules in this section keep imports intuitive and consistent.
 # 
 # Individual examples for these rules in action can be found at
 # [examples/individual_rules/import_rules.py](./examples/individual_rules/import_rules.py)
@@ -243,6 +243,38 @@ rules: # A list of custom rules - see https://docs.sourcery.ai/custom_rules/
         class Dog(Mammal):
           ...
 
+# ----------------------------------------------------------------------------------
+# [2.5 Global Variable Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#25-global-variable-rules)
+# ----------------------------------------------------------------------------------
+# 
+# The rule in this section prevent global variables from being defined.
+# 
+# Individual examples for this rule in action can be found at
+# [examples/individual_rules/global_variable_rules.py](./examples/individual_rules/global_variable_rules.py)
+
+- id: avoid-global-variables
+  pattern: ${var} = ${value}
+  condition: pattern.in_module_scope() and var.is_lower_case() and not var.starts_with("_") and var.is_identifier()
+  description: Do not define variables at the module level - (found variable ${var})
+  explanation: |
+    Avoid global variables.
+
+    If needed, global variables should be declared at the module level and made internal to the module by prepending an `_` to the name. External access to global variables must be done through public module-level functions.
+
+    While module-level constants are technically variables, they are permitted and encouraged. For example: `MAX_HOLY_HANDGRENADE_COUNT = 3`. Constants must be named using all caps with underscores.
+
+    From Google Style Guide [2.5.4](https://google.github.io/styleguide/pyguide.html#254-decision)
+  tests:
+    - match: max_holy_handgrenade_count = 3
+    - match: "max_holy_handgrenade_count: int = 3"
+    - no-match: holy_handgrenade[1] = 3
+    - no-match: _max_holy_handgrenade_count = 3
+    - no-match: HolyGrenades = Dict[str, Grenade]
+    - no-match: MAX_HOLY_HANDGRENADE_COUNT = 3
+    - no-match: |
+        def f():
+            max_holy_handgrenade_count = 3
+
 - id: do-not-use-staticmethod
   pattern: |
     @staticmethod
@@ -335,30 +367,6 @@ rules: # A list of custom rules - see https://docs.sourcery.ai/custom_rules/
     - match: "list(filter(lambda x: x > x**2, things))"
       expect: list(x for x in things if x > x**2)
     - no-match: "map(lambda x: x**2, things)"
-
-
-- id: avoid-global-variables
-  pattern: ${var} = ${value}
-  condition: pattern.in_module_scope() and var.is_lower_case() and not var.starts_with("_") and var.is_identifier()
-  description: Do not define variables at the module level - (found variable ${var})
-  explanation: |
-    Avoid global variables.
-
-    If needed, global variables should be declared at the module level and made internal to the module by prepending an `_` to the name. External access to global variables must be done through public module-level functions.
-
-    While module-level constants are technically variables, they are permitted and encouraged. For example: `MAX_HOLY_HANDGRENADE_COUNT = 3`. Constants must be named using all caps with underscores.
-
-    From Google Style Guide [2.5.4](https://google.github.io/styleguide/pyguide.html#254-decision)
-  tests:
-    - match: max_holy_handgrenade_count = 3
-    - match: "max_holy_handgrenade_count: int = 3"
-    - no-match: holy_handgrenade[1] = 3
-    - no-match: _max_holy_handgrenade_count = 3
-    - no-match: HolyGrenades = Dict[str, Grenade]
-    - no-match: MAX_HOLY_HANDGRENADE_COUNT = 3
-    - no-match: |
-        def f():
-            max_holy_handgrenade_count = 3
 
 - id: avoid-single-character-names-variables
   pattern: ${var} = ${value}
