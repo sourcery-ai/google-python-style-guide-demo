@@ -420,6 +420,15 @@ rules: # A list of custom rules - see https://docs.sourcery.ai/custom_rules/
       - match: a = 1 if cond else this_is_an_incredibly_long_value_that_is_more_than_80_characters_long_no_joking_around
       - match: a = 1 if cond else this_is_an_incredibly_long_value + is_more_than_80_characters_long_no_joking_around()
 
+# ----------------------------------------------------------------------------------
+# [2.17 Decorator Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#217-decorator-rules)
+# ----------------------------------------------------------------------------------
+# 
+# The rule in this section prevent the [`staticmethod`](https://docs.python.org/3/library/functions.html#staticmethod) from being used.
+# 
+# Individual examples for this rule in action can be found at
+# [examples/individual_rules/decorator_rules.py](./examples/individual_rules/decorator_rules.py)
+
 - id: do-not-use-staticmethod
   pattern: |
     @staticmethod
