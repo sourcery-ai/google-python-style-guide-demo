@@ -1098,6 +1098,15 @@ rules: # A list of custom rules - see https://docs.sourcery.ai/custom_rules/
         class _PrivateUpperCamelCase123:
           pass
 
+# ----------------------------------------------------------------------------------
+# [3.18 Function Length Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#318-function-length-rules)
+# ----------------------------------------------------------------------------------
+# 
+# The rule in this section ensure functions and methods are short.
+# 
+# Individual examples for this rule in action can be found at
+# [examples/individual_rules/function_length_rules.py](./examples/individual_rules/function_length_rules.py)
+
 - id: no-long-functions
   pattern: |
       def ${name}(...):
