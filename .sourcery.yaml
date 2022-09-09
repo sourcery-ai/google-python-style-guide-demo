@@ -457,6 +457,92 @@ rules: # A list of custom rules - see https://docs.sourcery.ai/custom_rules/
           def suggested_event(new_suggestion) -> str:
               pass
 
+# ----------------------------------------------------------------------------------
+# [2.21 Type Annotation Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#217-decorator-rules)
+# ----------------------------------------------------------------------------------
+# 
+# The rules in this section suggest the addition of type annotations to functions and
+# methods.
+# 
+# Individual examples for this rule in action can be found at
+# [examples/individual_rules/type_annotations_rules.py](./examples/individual_rules/type_annotations_rules.py)
+
+- id: require-parameter-annotation
+  pattern: |
+      def ${name}(..., ${arg}: !!!=${default?}, ...):
+          ...
+  condition: not name.starts_with("_") and not arg.equals("self") and not arg.equals("cls")
+  paths:
+    exclude:
+      - test/
+      - tests/
+  description: Annotate parameter `${arg}` in public function/method `${name}` with a type annotation
+  explanation: |
+    Adding type annotations has several benefits:
+
+    1. It improves the documentation of the function
+    2. It allows the function to be checked for correctness
+    3. It allows checking that the function callers are passing the correct params
+
+    These [mypy docs](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html#functions) describe how to
+    annotate function arguments and return types.
+
+    From Google Style Guide [2.21](https://google.github.io/styleguide/pyguide#221-type-annotated-code)
+  tests:
+    - match: |
+        def add(a, b: int):
+          return a + b
+    - match: |
+        def f(a=1):
+          return a * 2
+    - no-match: |
+        def f() -> int:
+            pass
+    - no-match: |
+        def f(a: int, b: str):
+            pass
+    - no-match: |
+        def f(self, a: int, b: str):
+            pass
+    - no-match: |
+        def f(cls, a: int, b: str):
+            pass
+
+- id: require-return-annotation
+  pattern: |
+      def ${name}(...) -> !!!:
+          ...
+  condition: not name.starts_with("_")
+  paths:
+    exclude:
+      - test/
+      - tests/
+  description: Annotate public function/method `${name}` with a return type annotation
+  explanation: |
+    Adding type annotations has several benefits:
+
+    1. It improves the documentation of the function
+    2. It allows the function to be checked for correctness
+    3. It allows checking that the function callers are passing the correct params
+
+    These [mypy docs](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html#functions) describe how to
+    annotate function arguments and return types.
+
+    From Google Style Guide [2.21](https://google.github.io/styleguide/pyguide#221-type-annotated-code)
+  tests:
+    - match: |
+        def f():
+            x()
+    - no-match: |
+        def f() -> int:
+            x()
+    - match: |
+        def f(a: int, b: str):
+            x()
+    - no-match: |
+        def f(something) -> int:
+            x()
+
 - id: avoid-single-character-names-variables
   pattern: ${var} = ${value}
   condition: var.character_count() == 1
@@ -561,83 +647,6 @@ rules: # A list of custom rules - see https://docs.sourcery.ai/custom_rules/
     - match: magic_float = 42
     - match: magic_float = 42.00
     - match: custom_notes_dict = {}
-
-
-- id: require-parameter-annotation
-  pattern: |
-      def ${name}(..., ${arg}: !!!=${default?}, ...):
-          ...
-  condition: not name.starts_with("_") and not arg.equals("self") and not arg.equals("cls")
-  paths:
-    exclude:
-      - test/
-      - tests/
-  description: Annotate parameter `${arg}` in public function/method `${name}` with a type annotation
-  explanation: |
-    Adding type annotations has several benefits:
-
-    1. It improves the documentation of the function
-    2. It allows the function to be checked for correctness
-    3. It allows checking that the function callers are passing the correct params
-
-    These [mypy docs](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html#functions) describe how to
-    annotate function arguments and return types.
-
-    From Google Style Guide [2.21](https://google.github.io/styleguide/pyguide#221-type-annotated-code)
-  tests:
-    - match: |
-        def add(a, b: int):
-          return a + b
-    - match: |
-        def f(a=1):
-          return a * 2
-    - no-match: |
-        def f() -> int:
-            pass
-    - no-match: |
-        def f(a: int, b: str):
-            pass
-    - no-match: |
-        def f(self, a: int, b: str):
-            pass
-    - no-match: |
-        def f(cls, a: int, b: str):
-            pass
-
-- id: require-return-annotation
-  pattern: |
-      def ${name}(...) -> !!!:
-          ...
-  condition: not name.starts_with("_")
-  paths:
-    exclude:
-      - test/
-      - tests/
-  description: Annotate public function/method `${name}` with a return type annotation
-  explanation: |
-    Adding type annotations has several benefits:
-
-    1. It improves the documentation of the function
-    2. It allows the function to be checked for correctness
-    3. It allows checking that the function callers are passing the correct params
-
-    These [mypy docs](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html#functions) describe how to
-    annotate function arguments and return types.
-
-    From Google Style Guide [2.21](https://google.github.io/styleguide/pyguide#221-type-annotated-code)
-  tests:
-    - match: |
-        def f():
-            x()
-    - no-match: |
-        def f() -> int:
-            x()
-    - match: |
-        def f(a: int, b: str):
-            x()
-    - no-match: |
-        def f(something) -> int:
-            x()
 
 - id: avoid-trivial-properties
   description: Avoid defining trivial properties
