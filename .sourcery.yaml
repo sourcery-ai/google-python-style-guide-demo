@@ -275,6 +275,68 @@ rules: # A list of custom rules - see https://docs.sourcery.ai/custom_rules/
         def f():
             max_holy_handgrenade_count = 3
 
+# ----------------------------------------------------------------------------------
+# [2.8 Default Iterator and Operator Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#28-default-iterator-and-operator-rules)
+# ----------------------------------------------------------------------------------
+# 
+# The rules in this section suggest the use of correct iterator and operator types.
+# 
+# Individual examples for this rule in action can be found at
+# [examples/individual_rules/default_iterator_and_operator_rules.py](./examples/individual_rules/default_iterator_and_operator_rules.py)
+
+- id: do-not-use-has-key
+  pattern: ${d}.has_key(${key})
+  condition: d.has_type("dict")
+  replacement: ${key} in ${d}
+  description: Replace Python 2 syntax `dict.has_key` with a Python 3 membership test
+  explanation: |
+    Use default iterators and operators for types that support them, like lists, dictionaries, and files. The built-in types define iterator methods, too. Prefer these methods to methods that return lists, except that you should not mutate a container while iterating over it.
+
+    From Google Style Guide [2.8.4](https://google.github.io/styleguide/pyguide.html#284-decision)
+
+    Note that the method `dict.has_key` is only available in Python 2, but Sourcery only
+    works with Python 3 code. Hence, this rule prevents programmers from erroneously
+    checking membership with `dictionary.has_key(key)`, suggesting instead the use of
+    the correct Python 3 syntax `key in dictionary`.
+  tests:
+    - match: |
+        tasks_for_today: dict[str, Task] = get_tasks("today")
+        is_week_day = tasks_for_today.has_key("work")
+      expect: |
+        tasks_for_today: dict[str, Task] = get_tasks("today")
+        is_week_day = "work" in tasks_for_today
+    - match: |
+        def is_movie_in_database(movie: Movie, movies: Dict[Movie, MovieSpec]) -> bool:
+          return movies.has_key(movie)
+      expect: |
+        def is_movie_in_database(movie: Movie, movies: Dict[Movie, MovieSpec]) -> bool:
+          return movie in movies
+    - match: |
+        pro_users = {
+          user.name: user
+          for user in database.fetch(User)
+        }
+        if pro_users.has_key(get_current_user().name):
+          print("You've signed in under the PRO subscription")
+        else:
+          print("Please sign up for PRO to use this awesome feature!")
+      expect: |
+        pro_users = {
+          user.name: user
+          for user in database.fetch(User)
+        }
+        if get_current_user().name in pro_users:
+          print("You've signed in under the PRO subscription")
+        else:
+          print("Please sign up for PRO to use this awesome feature!")
+    - no-match: |
+        # Not sure of `random_object` is a dictionary
+        random_object.has_key(random_key)
+    - no-match: |
+        # Custom type `Database` is not a dictionary
+        database: Database = get_database()
+        print(database.has_key("dinosaur"))
+
 - id: do-not-use-staticmethod
   pattern: |
     @staticmethod
@@ -660,59 +722,6 @@ rules: # A list of custom rules - see https://docs.sourcery.ai/custom_rules/
     - no-match: |
         def f(a, b) -> int:
             x()
-
-- id: do-not-use-has-key
-  pattern: ${d}.has_key(${key})
-  condition: d.has_type("dict")
-  replacement: ${key} in ${d}
-  description: Replace Python 2 syntax `dict.has_key` with a Python 3 membership test
-  explanation: |
-    Use default iterators and operators for types that support them, like lists, dictionaries, and files. The built-in types define iterator methods, too. Prefer these methods to methods that return lists, except that you should not mutate a container while iterating over it.
-
-    From Google Style Guide [2.8.4](https://google.github.io/styleguide/pyguide.html#284-decision)
-
-    Note that the method `dict.has_key` is only available in Python 2, but Sourcery only
-    works with Python 3 code. Hence, this rule prevents programmers from erroneously
-    checking membership with `dictionary.has_key(key)`, suggesting instead the use of
-    the correct Python 3 syntax `key in dictionary`.
-  tests:
-    - match: |
-        tasks_for_today: dict[str, Task] = get_tasks("today")
-        is_week_day = tasks_for_today.has_key("work")
-      expect: |
-        tasks_for_today: dict[str, Task] = get_tasks("today")
-        is_week_day = "work" in tasks_for_today
-    - match: |
-        def is_movie_in_database(movie: Movie, movies: Dict[Movie, MovieSpec]) -> bool:
-          return movies.has_key(movie)
-      expect: |
-        def is_movie_in_database(movie: Movie, movies: Dict[Movie, MovieSpec]) -> bool:
-          return movie in movies
-    - match: |
-        pro_users = {
-          user.name: user
-          for user in database.fetch(User)
-        }
-        if pro_users.has_key(get_current_user().name):
-          print("You've signed in under the PRO subscription")
-        else:
-          print("Please sign up for PRO to use this awesome feature!")
-      expect: |
-        pro_users = {
-          user.name: user
-          for user in database.fetch(User)
-        }
-        if get_current_user().name in pro_users:
-          print("You've signed in under the PRO subscription")
-        else:
-          print("Please sign up for PRO to use this awesome feature!")
-    - no-match: |
-        # Not sure of `random_object` is a dictionary
-        random_object.has_key(random_key)
-    - no-match: |
-        # Custom type `Database` is not a dictionary
-        database: Database = get_database()
-        print(database.has_key("dinosaur"))
 
 - id: docstrings-for-classes
   pattern: |
