@@ -674,6 +674,108 @@ rules: # A list of custom rules - see https://docs.sourcery.ai/custom_rules/
         def hello():
           print("hello")
 
+# ----------------------------------------------------------------------------------
+# [3.15 Getter and Setter Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#315-getter-and-setter-rules)
+# ----------------------------------------------------------------------------------
+# 
+# The rule in this section prevents the definition of trivial getters and setters (i.e.,
+# methods that have no extra logic apart from reading or writing an attribute).
+# 
+# Individual examples for this rule in action can be found at
+# [examples/individual_rules/getter_and_setter_rules.py](./examples/individual_rules/getter_and_setter_rules.py)
+
+- id: avoid-trivial-properties
+  description: Avoid defining trivial properties
+  explanation: |
+    Getter and setter functions (also called accessors and mutators) should be used when
+    they provide a meaningful role or behavior for getting or setting a variable's
+    value.
+
+    In particular, they should be used when getting or setting the variable is complex
+    or the cost is significant, either currently or in a reasonable future.
+
+    If, for example, a pair of getters/setters simply read and write an internal
+    attribute, the internal attribute should be made public instead. By comparison, if
+    setting a variable means some state is invalidated or rebuilt, it should be a setter
+    function. The function invocation hints that a potentially non-trivial operation is
+    occurring. Alternatively, properties may be an option when simple logic is needed,
+    or refactoring to no longer need getters and setters.
+
+    From Google Style Guide [3.15](https://google.github.io/styleguide/pyguide#315-getters-and-setters)
+  pattern: |
+    @property
+    def ${f}(self):
+      return self.${value}
+
+    ...
+
+    @${f}.setter
+    def ${setter}(self, ${other}):
+      self.${value} = ${other}
+  tests:
+    - match: |
+        class Student:
+          def __init__(self, name):
+            self._name = name
+
+          @property
+          def name(self):
+            return self._name
+
+          @name.setter
+          def name(self, new_name):
+            self._name = new_name
+    - match: |
+        class Student:
+          def __init__(self, name, grade):
+            self._name = name
+            self._grade = grade
+
+          @property
+          def name(self):
+            return self._name
+
+          def get_grade(self):
+            return self._grade
+
+          @name.setter
+          def name(self, new_name):
+            self._name = new_name
+    - match: |
+        class Student:
+          def __init__(self, name: str) -> None:
+            self._name: str = name
+
+          @property
+          def name(self) -> str:
+            return self._name
+
+          @name.setter
+          def name(self, new_name: str) -> None:
+            self._name = new_name
+    - no-match: |
+        class Student:
+          def __init__(self, name: str) -> None:
+            self._name: str = name
+
+          @property
+          def name(self) -> str:
+            return self._name.title() # perform computation on name
+
+          @name.setter
+          def name(self, new_name: str) -> None:
+            self._name = new_name
+    - no-match: |
+        class Student:
+          def __init__(self, name: str) -> None:
+            self._name: str = name
+
+          @property
+          def name(self) -> str:
+            return self._name.title() # perform computation on name
+
+          # no setter: this means that `Student.name` is read-only
+
 - id: avoid-single-character-names-variables
   pattern: ${var} = ${value}
   condition: var.character_count() == 1
@@ -778,98 +880,6 @@ rules: # A list of custom rules - see https://docs.sourcery.ai/custom_rules/
     - match: magic_float = 42
     - match: magic_float = 42.00
     - match: custom_notes_dict = {}
-
-- id: avoid-trivial-properties
-  description: Avoid defining trivial properties
-  explanation: |
-    Getter and setter functions (also called accessors and mutators) should be used when
-    they provide a meaningful role or behavior for getting or setting a variable's
-    value.
-
-    In particular, they should be used when getting or setting the variable is complex
-    or the cost is significant, either currently or in a reasonable future.
-
-    If, for example, a pair of getters/setters simply read and write an internal
-    attribute, the internal attribute should be made public instead. By comparison, if
-    setting a variable means some state is invalidated or rebuilt, it should be a setter
-    function. The function invocation hints that a potentially non-trivial operation is
-    occurring. Alternatively, properties may be an option when simple logic is needed,
-    or refactoring to no longer need getters and setters.
-
-    From Google Style Guide [3.15](https://google.github.io/styleguide/pyguide#315-getters-and-setters)
-  pattern: |
-    @property
-    def ${f}(self):
-      return self.${value}
-
-    ...
-
-    @${f}.setter
-    def ${setter}(self, ${other}):
-      self.${value} = ${other}
-  tests:
-    - match: |
-        class Student:
-          def __init__(self, name):
-            self._name = name
-
-          @property
-          def name(self):
-            return self._name
-
-          @name.setter
-          def name(self, new_name):
-            self._name = new_name
-    - match: |
-        class Student:
-          def __init__(self, name, grade):
-            self._name = name
-            self._grade = grade
-
-          @property
-          def name(self):
-            return self._name
-
-          def get_grade(self):
-            return self._grade
-
-          @name.setter
-          def name(self, new_name):
-            self._name = new_name
-    - match: |
-        class Student:
-          def __init__(self, name: str) -> None:
-            self._name: str = name
-
-          @property
-          def name(self) -> str:
-            return self._name
-
-          @name.setter
-          def name(self, new_name: str) -> None:
-            self._name = new_name
-    - no-match: |
-        class Student:
-          def __init__(self, name: str) -> None:
-            self._name: str = name
-
-          @property
-          def name(self) -> str:
-            return self._name.title() # perform computation on name
-
-          @name.setter
-          def name(self, new_name: str) -> None:
-            self._name = new_name
-    - no-match: |
-        class Student:
-          def __init__(self, name: str) -> None:
-            self._name: str = name
-
-          @property
-          def name(self) -> str:
-            return self._name.title() # perform computation on name
-
-          # no setter: this means that `Student.name` is read-only
 
 - id: no-long-functions
   pattern: |
