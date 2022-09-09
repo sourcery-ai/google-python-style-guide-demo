@@ -337,50 +337,15 @@ rules: # A list of custom rules - see https://docs.sourcery.ai/custom_rules/
         database: Database = get_database()
         print(database.has_key("dinosaur"))
 
-- id: do-not-use-staticmethod
-  pattern: |
-    @staticmethod
-    def ${name}(...):
-      ...
-  description: Do not use the staticmethod decorator
-  explanation: |
-      Never use staticmethod unless forced to in order to integrate with an API defined in an existing library. Write a module level function instead.
-
-      From: Google Style Guide [2.17.4](https://google.github.io/styleguide/pyguide.html#2174-decision)
-  tests:
-    - match: |
-          @staticmethod
-          def suggested_event(new_suggestion) -> str:
-              pass
-    - match: |
-          @staticmethod
-          def suggested_event(new_suggestion: bool) -> str:
-              pass
-    - no-match: |
-          def suggested_event(new_suggestion) -> str:
-              pass
-    - no-match: |
-          @staticmethod # Note that this will not currently trigger where there are other decorators
-          @other_decorator
-          def suggested_event(new_suggestion) -> str:
-              pass
-
-- id: no-complex-if-expressions
-  description: Only use conditional expressions for simple cases
-  explanation: |
-
-      Each portion [of the conditional expression] must fit on one line: `true-expression`, `if-expression`, `else-expression`. Use a complete if statement when things get more complicated.
-
-      From Google Style Guide [2.11.4](https://google.github.io/styleguide/pyguide.html#2114-decision)
-  pattern: ${value} if ${test} else ${default}
-  condition: value.character_count() > 80 or test.character_count() > 80 or default.character_count() > 80
-  tests:
-      - no-match: a = 1 if cond else 2
-      - match: a = 1 if this_is_an_incredibly_long_condition_that_is_more_than_80_characters_long_no_joking_around else 2
-      - match: a = this_is_an_incredibly_long_value_that_is_more_than_80_characters_long_no_joking_around if cond else 2
-      - match: a = 1 if cond else this_is_an_incredibly_long_value_that_is_more_than_80_characters_long_no_joking_around
-      - match: a = 1 if cond else this_is_an_incredibly_long_value + is_more_than_80_characters_long_no_joking_around()
-
+# ----------------------------------------------------------------------------------
+# [2.10 Lambda Function Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#210-lambda-function-rules)
+# ----------------------------------------------------------------------------------
+# 
+# The rules in this section ensure that `lambda`s are kept simple and short, or 
+# suggest the use of other, more Pythonic constructs.
+# 
+# Individual examples for this rule in action can be found at
+# [examples/individual_rules/lambda_function_rules.py](./examples/individual_rules/lambda_function_rules.py)
 
 - id: lambdas-should-be-short
   description: Lambda functions should be kept to a single line
@@ -429,6 +394,50 @@ rules: # A list of custom rules - see https://docs.sourcery.ai/custom_rules/
     - match: "list(filter(lambda x: x > x**2, things))"
       expect: list(x for x in things if x > x**2)
     - no-match: "map(lambda x: x**2, things)"
+
+- id: do-not-use-staticmethod
+  pattern: |
+    @staticmethod
+    def ${name}(...):
+      ...
+  description: Do not use the staticmethod decorator
+  explanation: |
+      Never use staticmethod unless forced to in order to integrate with an API defined in an existing library. Write a module level function instead.
+
+      From: Google Style Guide [2.17.4](https://google.github.io/styleguide/pyguide.html#2174-decision)
+  tests:
+    - match: |
+          @staticmethod
+          def suggested_event(new_suggestion) -> str:
+              pass
+    - match: |
+          @staticmethod
+          def suggested_event(new_suggestion: bool) -> str:
+              pass
+    - no-match: |
+          def suggested_event(new_suggestion) -> str:
+              pass
+    - no-match: |
+          @staticmethod # Note that this will not currently trigger where there are other decorators
+          @other_decorator
+          def suggested_event(new_suggestion) -> str:
+              pass
+
+- id: no-complex-if-expressions
+  description: Only use conditional expressions for simple cases
+  explanation: |
+
+      Each portion [of the conditional expression] must fit on one line: `true-expression`, `if-expression`, `else-expression`. Use a complete if statement when things get more complicated.
+
+      From Google Style Guide [2.11.4](https://google.github.io/styleguide/pyguide.html#2114-decision)
+  pattern: ${value} if ${test} else ${default}
+  condition: value.character_count() > 80 or test.character_count() > 80 or default.character_count() > 80
+  tests:
+      - no-match: a = 1 if cond else 2
+      - match: a = 1 if this_is_an_incredibly_long_condition_that_is_more_than_80_characters_long_no_joking_around else 2
+      - match: a = this_is_an_incredibly_long_value_that_is_more_than_80_characters_long_no_joking_around if cond else 2
+      - match: a = 1 if cond else this_is_an_incredibly_long_value_that_is_more_than_80_characters_long_no_joking_around
+      - match: a = 1 if cond else this_is_an_incredibly_long_value + is_more_than_80_characters_long_no_joking_around()
 
 - id: avoid-single-character-names-variables
   pattern: ${var} = ${value}
