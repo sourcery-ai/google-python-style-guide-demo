@@ -76,34 +76,6 @@ rules: # A list of custom rules - see https://docs.sourcery.ai/custom_rules/
   - no-match: from my_company.my_module import important_function
   - no-match: from pathlib import Path
 
-- id: do-not-use-staticmethod
-  pattern: |
-    @staticmethod
-    def ${name}(...):
-      ...
-  description: Do not use the staticmethod decorator
-  explanation: |
-      Never use staticmethod unless forced to in order to integrate with an API defined in an existing library. Write a module level function instead.
-
-      From: Google Style Guide [2.17.4](https://google.github.io/styleguide/pyguide.html#2174-decision)
-  tests:
-    - match: |
-          @staticmethod
-          def suggested_event(new_suggestion) -> str:
-              pass
-    - match: |
-          @staticmethod
-          def suggested_event(new_suggestion: bool) -> str:
-              pass
-    - no-match: |
-          def suggested_event(new_suggestion) -> str:
-              pass
-    - no-match: |
-          @staticmethod # Note that this will not currently trigger where there are other decorators
-          @other_decorator
-          def suggested_event(new_suggestion) -> str:
-              pass
-
 - id: use-standard-name-for-aliases-pandas
   description: Import `pandas` as `pd`
   explanation: |
@@ -226,6 +198,78 @@ rules: # A list of custom rules - see https://docs.sourcery.ai/custom_rules/
       - no-match: import pandas, multiprocessing as mp
       - match: import multiprocessing as multi
       - match: import pandas, multiprocessing as multi, tensorflow
+
+# ----------------------------------------------------------------------------------
+# [2.4 Exception Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#24-exception-rules)
+# ----------------------------------------------------------------------------------
+# 
+# The rule in this section ensures that exceptions are consistently named.
+# 
+# Individual examples for this rule in action can be found at
+# [examples/individual_rules/exception_rules.py](./examples/individual_rules/exception_rules.py)
+
+- id: errors-named-error
+  pattern: |
+    class ${error}(${base}):
+      ${statements*}
+  condition:
+    (base.is_exception_type() or base.matches_regex("[A-Z][a-zA-Z]*Error")) and not error.matches_regex("[A-Z][a-zA-Z]*Error")
+  description:
+    Exception names must end in Error
+  explanation: |
+    From Google Style Guide [2.4.4](https://google.github.io/styleguide/pyguide.html#244-decision)
+  tests:
+    - match: |
+        class Foo(ValueError):
+          ...
+    - match: |
+        class ExampleException(CustomError):
+          def __init__(self, msg):
+            ...
+    - match: |
+        class InvalidName(Exception):
+          ...
+    - match: |
+        class InvalidName(BaseException):
+          ...
+    - no-match: |
+        class MyError(Exception):
+          def __init__(self, msg):
+            ...
+    - no-match: |
+        class NameError(AttributeError):
+          ...
+    - no-match: |
+        class Dog(Mammal):
+          ...
+
+- id: do-not-use-staticmethod
+  pattern: |
+    @staticmethod
+    def ${name}(...):
+      ...
+  description: Do not use the staticmethod decorator
+  explanation: |
+      Never use staticmethod unless forced to in order to integrate with an API defined in an existing library. Write a module level function instead.
+
+      From: Google Style Guide [2.17.4](https://google.github.io/styleguide/pyguide.html#2174-decision)
+  tests:
+    - match: |
+          @staticmethod
+          def suggested_event(new_suggestion) -> str:
+              pass
+    - match: |
+          @staticmethod
+          def suggested_event(new_suggestion: bool) -> str:
+              pass
+    - no-match: |
+          def suggested_event(new_suggestion) -> str:
+              pass
+    - no-match: |
+          @staticmethod # Note that this will not currently trigger where there are other decorators
+          @other_decorator
+          def suggested_event(new_suggestion) -> str:
+              pass
 
 - id: no-complex-if-expressions
   description: Only use conditional expressions for simple cases
@@ -661,41 +705,6 @@ rules: # A list of custom rules - see https://docs.sourcery.ai/custom_rules/
         # Custom type `Database` is not a dictionary
         database: Database = get_database()
         print(database.has_key("dinosaur"))
-
-- id: errors-named-error
-  pattern: |
-    class ${error}(${base}):
-      ${statements*}
-  condition:
-    (base.is_exception_type() or base.matches_regex("[A-Z][a-zA-Z]*Error")) and not error.matches_regex("[A-Z][a-zA-Z]*Error")
-  description:
-    Exception names must end in Error
-  explanation: |
-    From Google Style Guide [2.4.4](https://google.github.io/styleguide/pyguide.html#244-decision)
-  tests:
-    - match: |
-        class Foo(ValueError):
-          ...
-    - match: |
-        class ExampleException(CustomError):
-          def __init__(self, msg):
-            ...
-    - match: |
-        class InvalidName(Exception):
-          ...
-    - match: |
-        class InvalidName(BaseException):
-          ...
-    - no-match: |
-        class MyError(Exception):
-          def __init__(self, msg):
-            ...
-    - no-match: |
-        class NameError(AttributeError):
-          ...
-    - no-match: |
-        class Dog(Mammal):
-          ...
 
 - id: docstrings-for-classes
   pattern: |
