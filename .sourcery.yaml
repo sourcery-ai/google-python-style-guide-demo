@@ -776,6 +776,16 @@ rules: # A list of custom rules - see https://docs.sourcery.ai/custom_rules/
 
           # no setter: this means that `Student.name` is read-only
 
+# ----------------------------------------------------------------------------------
+# [3.16 Naming Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#316-naming-rules)
+# ----------------------------------------------------------------------------------
+# 
+# The rules in this section help ensure that variable, function and class names are
+# consistent, concise and descriptive.
+# 
+# Individual examples for this rule in action can be found at
+# [examples/individual_rules/naming_rules.py](./examples/individual_rules/naming_rules.py)
+
 - id: avoid-single-character-names-variables
   pattern: ${var} = ${value}
   condition: var.character_count() == 1
@@ -880,25 +890,6 @@ rules: # A list of custom rules - see https://docs.sourcery.ai/custom_rules/
     - match: magic_float = 42
     - match: magic_float = 42.00
     - match: custom_notes_dict = {}
-
-- id: no-long-functions
-  pattern: |
-      def ${name}(...):
-          ${statements+}
-  condition: statements.statement_count() > 40
-  description: Functions should be less than 40 lines
-  explanation: |
-    Prefer small and focused functions.
-
-    We recognize that long functions are sometimes appropriate, so no hard limit is placed on function length. If a function exceeds about 40 lines, think about whether it can be broken up without harming the structure of the program.
-
-    Even if your long function works perfectly now, someone modifying it in a few months may add new behavior. This could result in bugs that are hard to find. Keeping your functions short and simple makes it easier for other people to read and modify your code.
-
-    From Google Style Guide [3.18](https://google.github.io/styleguide/pyguide.html#318-function-length)
-  tests:
-    - no-match: |
-        def f(a, b) -> int:
-            x()
 
 - id: snake-case-variable-declarations
   pattern: |
@@ -1106,3 +1097,22 @@ rules: # A list of custom rules - see https://docs.sourcery.ai/custom_rules/
     - no-match: |
         class _PrivateUpperCamelCase123:
           pass
+
+- id: no-long-functions
+  pattern: |
+      def ${name}(...):
+          ${statements+}
+  condition: statements.statement_count() > 40
+  description: Functions should be less than 40 lines
+  explanation: |
+    Prefer small and focused functions.
+
+    We recognize that long functions are sometimes appropriate, so no hard limit is placed on function length. If a function exceeds about 40 lines, think about whether it can be broken up without harming the structure of the program.
+
+    Even if your long function works perfectly now, someone modifying it in a few months may add new behavior. This could result in bugs that are hard to find. Keeping your functions short and simple makes it easier for other people to read and modify your code.
+
+    From Google Style Guide [3.18](https://google.github.io/styleguide/pyguide.html#318-function-length)
+  tests:
+    - no-match: |
+        def f(a, b) -> int:
+            x()
