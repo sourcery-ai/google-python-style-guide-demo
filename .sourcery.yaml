@@ -19,24 +19,29 @@ ignore: # A list of paths or files which Sourcery will ignore.
 - .env
 
 refactor:
-  skip: []  # A list of rule IDs Sourcery will never suggest.
   rule_types:
   - refactoring
   - suggestion
   - comment
-  python_version: '3.7'  # A string specifying the lowest Python version your project supports. Sourcery will not suggest refactorings requiring a higher Python version.
+  python_version: '3.7'
 
 rules: # A list of custom rules - see https://docs.sourcery.ai/custom_rules/
 
 # ==================================================================================
-# Google Python Style Guide rules
+# [Google Python Style Guide rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/)
 # ==================================================================================
 # 
 # The following rules instruct Sourcery to help making sure that the Google Python Style
 # Guide is respected in this project.
+
+# ----------------------------------------------------------------------------------
+# [2.2 Import Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#22-import-rules)
+# ----------------------------------------------------------------------------------
 # 
-# The complete style guide can be found at 
-# https://google.github.io/styleguide/pyguide.html
+# The rules in this section help in keeping imports intuitive and consistent.
+# 
+# Individual examples for these rules in action can be found at
+# [examples/individual_rules/import_rules.py](./examples/individual_rules/import_rules.py)
 
 - id: no-wildcard-imports
   pattern: from ... import *
@@ -55,6 +60,21 @@ rules: # A list of custom rules - see https://docs.sourcery.ai/custom_rules/
     - match: from pandas.series import *
     - match: from .something import *
     - no-match: from math import sin
+
+- id: no-relative-imports
+  description: Always use absolute imports instead of relative imports
+  explanation: |
+      Do not use relative names in imports. Even if the module is in the same package, use the full package name. This helps prevent unintentionally importing a package twice.
+
+      From Google Style Guide [2.2.4](https://google.github.io/styleguide/pyguide.html#224-decision)
+  pattern: from ${module} import ...
+  condition: module.matches_regex(r"^\.")
+  tests:
+  - match: from . import important_function
+  - match: from .my_module import important_function
+  - match: from ..my_module import important_function, unimportant_function
+  - no-match: from my_company.my_module import important_function
+  - no-match: from pathlib import Path
 
 - id: do-not-use-staticmethod
   pattern: |
@@ -83,21 +103,6 @@ rules: # A list of custom rules - see https://docs.sourcery.ai/custom_rules/
           @other_decorator
           def suggested_event(new_suggestion) -> str:
               pass
-
-- id: no-relative-imports
-  description: Always use absolute imports instead of relative imports
-  explanation: |
-      Do not use relative names in imports. Even if the module is in the same package, use the full package name. This helps prevent unintentionally importing a package twice.
-
-      From Google Style Guide [2.2.4](https://google.github.io/styleguide/pyguide.html#224-decision)
-  pattern: from ${module} import ...
-  condition: module.matches_regex(r"^\.")
-  tests:
-  - match: from . import important_function
-  - match: from .my_module import important_function
-  - match: from ..my_module import important_function, unimportant_function
-  - no-match: from my_company.my_module import important_function
-  - no-match: from pathlib import Path
 
 - id: use-standard-name-for-aliases-pandas
   description: Import `pandas` as `pd`
