@@ -1,6 +1,7 @@
 # ----------------------------------------------------------------------------------
-# [2.21 Type Annotation Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#221-type-annotation-rules)
+# [3.8 Docstring and Comment Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#38-docstring-and-comment-rules)
 # ----------------------------------------------------------------------------------
 #
 # This example file contains pieces of code that either comply with or violate the
-# rules `require-parameter-annotation` and `require-return-annotation`.
+# rules `docstrings-for-classes`, `docstrings-for-functions` and
+# `docstrings-for-modules`.
