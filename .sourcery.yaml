@@ -424,7 +424,7 @@ rules:
 # [2.17 Decorator Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#217-decorator-rules)
 # ----------------------------------------------------------------------------------
 # 
-# The rule in this section prevents the [`staticmethod`](https://docs.python.org/3/library/functions.html#staticmethod) from being used.
+# The rule in this section prevents [`staticmethod`](https://docs.python.org/3/library/functions.html#staticmethod) from being used.
 # 
 # Individual examples for this rule in action can be found at
 # [examples/individual_rules/decorator_rules.py](./examples/individual_rules/decorator_rules.py)
@@ -1102,7 +1102,7 @@ rules:
 # [3.18 Function Length Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#318-function-length-rules)
 # ----------------------------------------------------------------------------------
 # 
-# The rule in this section ensures functions and methods are short.
+# The rule in this section ensures that functions and methods are short.
 # 
 # Individual examples for this rule in action can be found at
 # [examples/individual_rules/function_length_rules.py](./examples/individual_rules/function_length_rules.py)
