@@ -247,7 +247,7 @@ rules:
 # [2.5 Global Variable Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#25-global-variable-rules)
 # ----------------------------------------------------------------------------------
 # 
-# The rule in this section prevent global variables from being defined.
+# The rule in this section prevents global variables from being defined.
 # 
 # Individual examples for this rule in action can be found at
 # [examples/individual_rules/global_variable_rules.py](./examples/individual_rules/global_variable_rules.py)
@@ -279,7 +279,7 @@ rules:
 # [2.8 Default Iterator and Operator Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#28-default-iterator-and-operator-rules)
 # ----------------------------------------------------------------------------------
 # 
-# The rules in this section suggest the use of correct iterator and operator types.
+# The rule in this section suggests the use of correct iterator and operator types.
 # 
 # Individual examples for this rule in action can be found at
 # [examples/individual_rules/default_iterator_and_operator_rules.py](./examples/individual_rules/default_iterator_and_operator_rules.py)
@@ -344,7 +344,7 @@ rules:
 # The rules in this section ensure that `lambda`s are kept simple and short, or 
 # suggest the use of other, more Pythonic constructs.
 # 
-# Individual examples for this rule in action can be found at
+# Individual examples for these rules in action can be found at
 # [examples/individual_rules/lambda_function_rules.py](./examples/individual_rules/lambda_function_rules.py)
 
 - id: lambdas-should-be-short
@@ -399,7 +399,7 @@ rules:
 # [2.11 Conditional Expression Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#211-conditional-expression-rules)
 # ----------------------------------------------------------------------------------
 # 
-# The rules in this section ensure conditional expressions are kept short and simple.
+# The rule in this section ensures conditional expressions are kept short and simple.
 # 
 # Individual examples for this rule in action can be found at
 # [examples/individual_rules/conditional_expression_rules.py](./examples/individual_rules/conditional_expression_rules.py)
@@ -424,7 +424,7 @@ rules:
 # [2.17 Decorator Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#217-decorator-rules)
 # ----------------------------------------------------------------------------------
 # 
-# The rule in this section prevent the [`staticmethod`](https://docs.python.org/3/library/functions.html#staticmethod) from being used.
+# The rule in this section prevents the [`staticmethod`](https://docs.python.org/3/library/functions.html#staticmethod) from being used.
 # 
 # Individual examples for this rule in action can be found at
 # [examples/individual_rules/decorator_rules.py](./examples/individual_rules/decorator_rules.py)
@@ -464,7 +464,7 @@ rules:
 # The rules in this section suggest the addition of type annotations to functions and
 # methods.
 # 
-# Individual examples for this rule in action can be found at
+# Individual examples for these rules in action can be found at
 # [examples/individual_rules/type_annotations_rules.py](./examples/individual_rules/type_annotations_rules.py)
 
 - id: require-parameter-annotation
@@ -550,7 +550,7 @@ rules:
 # The rules in this section ensure that functions, methods, classes and modules contain
 # docstrings.
 # 
-# Individual examples for this rule in action can be found at
+# Individual examples for these rules in action can be found at
 # [examples/individual_rules/docstring_and_comment_rules.py](./examples/individual_rules/docstring_and_comment_rules.py)
 
 - id: docstrings-for-classes
@@ -783,7 +783,7 @@ rules:
 # The rules in this section help ensure that variable, function and class names are
 # consistent, concise and descriptive.
 # 
-# Individual examples for this rule in action can be found at
+# Individual examples for these rules in action can be found at
 # [examples/individual_rules/naming_rules.py](./examples/individual_rules/naming_rules.py)
 
 - id: avoid-single-character-names-variables
@@ -1102,7 +1102,7 @@ rules:
 # [3.18 Function Length Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#318-function-length-rules)
 # ----------------------------------------------------------------------------------
 # 
-# The rule in this section ensure functions and methods are short.
+# The rule in this section ensures functions and methods are short.
 # 
 # Individual examples for this rule in action can be found at
 # [examples/individual_rules/function_length_rules.py](./examples/individual_rules/function_length_rules.py)
