@@ -35,6 +35,8 @@ def prompt_for_pro_subscription(database: Database) -> None:
         for user in database.fetch(User)
         if user.subscription == "PRO"
     }
+
+    # should be `get_current_user().name in pro_users`
     if pro_users.has_key(get_current_user().name):
         print("You've signed in under the PRO subscription")
     else:
