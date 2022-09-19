@@ -20,23 +20,25 @@ def squarer() -> Callable[[int], int]:
     return lambda x: x**2
 
 
+# no violation: small lambdas are OK
 def power() -> Callable[[int], int]:
     """Generate a function that takes two `x` and `y` and calculates `x**y`."""
     return lambda x, y: x**y
 
 
-# violate `lambdas-should-be-short` because those lambdas are huge!
+# violation of `lambdas-should-be-short` because that lambda is huge!
 def get_very_long_and_involved_calculator_for_x() -> Callable[[int], int]:
     """Generate a function that does a very involved calculation with `x`."""
     return lambda x: do_something_very_long_and_involved_with(x) - do_other_very_long_and_involved_things_with(x)
 
 
+# violation of `lambdas-should-be-short` because that lambda is huge!
 def get_very_long_and_involved_calculator_for_xyz() -> Callable[[int, int, int], int]:
     """Generate a function that does an involved calculation with multiple inputs."""
     return lambda x, y, z: do_something_very_long_and_involved_with(x) - do_other_very_long_and_involved_things_with(y, z)
 
 
-# trigger `map-lambda-to-generator`: mapping lambdas can be refactored as Pythonic
+# violation of `map-lambda-to-generator`: mapping lambdas can be refactored as Pythonic
 # generators
 def transform_numbers_with_lambda(numbers: list[float]) -> Iterator[float]:
     """Perform transformation in list of numbers."""
@@ -45,6 +47,8 @@ def transform_numbers_with_lambda(numbers: list[float]) -> Iterator[float]:
     return map(lambda x: x**2, numbers)
 
 
+# violation of `map-lambda-to-generator`: mapping lambdas and converting the result to a
+# list can be refactored as Pythonic list comprehensions
 def transform_numbers_with_lambda_list(numbers: list[float]) -> list[float]:
     """Perform transformation in list of numbers, returning another list."""
 
@@ -65,7 +69,7 @@ def add_numbers(left: list[float], right: list[float]) -> Iterator[float]:
     return map(lambda x, y: x + y, left, right)
 
 
-# trigger `filter-lambda-to-generator`: filtering with lambdas can be refactored as
+# violation of `filter-lambda-to-generator`: filtering with lambdas can be refactored as
 # Pythonic generators
 def filter_numbers_with_lambda(numbers: list[float]) -> Iterator[float]:
     """Filter numbers in list."""
@@ -74,6 +78,8 @@ def filter_numbers_with_lambda(numbers: list[float]) -> Iterator[float]:
     return filter(lambda x: x % 2 == 0, numbers)
 
 
+# violation of `filter-lambda-to-generator`: filtering with lambdas and converting the
+# result to a list can be refactored as Pythonic list comprehensions
 def filter_numbers_with_lambda_list(numbers: list[float]) -> list[float]:
     """Filter numbers in list, returning another list"""
 

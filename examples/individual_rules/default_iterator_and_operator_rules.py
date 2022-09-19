@@ -8,7 +8,7 @@ rule `do-not-use-has-key`. Also note that `do-not-use-has-key` has a replacement
 and hence Sourcery can automatically fix it.
 """
 
-# violate the rule `do-not-use-has-key`
+# violations of `do-not-use-has-key`
 def is_week_day() -> bool:
     """Check if today is a week day by checking if "work" is one of today's tasks."""
     tasks_for_today: dict[str, Task] = get_tasks("today")

@@ -6,14 +6,14 @@ This example file contains pieces of code that either comply with or violate the
 rule `no-complex-if-expressions`.
 """
 
-# no violation: if-expression is short and easy to understand
+# no violation: the if-expression is short and easy to understand
 def choose_one_or_two(condition: bool) -> int:
     """Choose `1` or `2` based on the input `condition`."""
     return 1 if condition else 2
 
 
-# violate `no-complex-if-expressions`: the following functions all contain very long
-# expressions inside the if-expressions
+# violations of `no-complex-if-expressions`: the following functions all contain
+# expressions longer than 80 characters inside the if-expression
 def choose_one_or_two_based_on_very_long_condition() -> int:
     """Choose `1` or `2` based on a condition that has a very long name."""
     return 1 if this_is_an_incredibly_long_condition_that_is_more_than_80_characters_long_no_joking_around else 2

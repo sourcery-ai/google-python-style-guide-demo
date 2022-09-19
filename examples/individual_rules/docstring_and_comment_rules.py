@@ -1,4 +1,5 @@
-# violates `docstrings-for-modules`: docstrings are triple-quoted strings, not comments.
+# violation of `docstrings-for-modules`: docstrings are triple-quoted strings, not
+# comments.
 # A module docstring should appear here, right at the top of the file.
 # The other files in this individual rule examples directory correctly contain module
 # docstrings.
@@ -13,7 +14,7 @@
 #
 # Take a look at the top of this file: there is already a violation there.
 
-# violate `docstrings-for-classes`
+# violations of `docstrings-for-classes`
 class CheeseShopAddress:
     ...
 
@@ -28,7 +29,7 @@ class OutOfCheeseError(Exception):
         return "Would you rather have some spam?"
 
 
-# no violation: the following classes contain docstrings
+# no violations: the following classes contain docstrings
 class CheeseShopAddress:
     """The address of a cheese shop."""
 
@@ -46,7 +47,7 @@ class _BrieCounter:
     limit: 500
 
 
-# violates `docstrings-for-functions`: public functions should always be documented
+# violation of `docstrings-for-functions`: public functions should always be documented
 def grow(plant: Plant) -> None:
     assert plant.is_alive()
     plant.height += 1
@@ -59,8 +60,8 @@ def _grow(plant: Plant) -> None:
     plant.height += 1
 
 
-# violates `docstrings-for-functions`: even internal functions should be documented if
-# they are too complex
+# violation of `docstrings-for-functions`: even internal functions should be documented
+# if they are too complex
 def _plant_and_grow(plant: Plant) -> None:
     pot = plant.owner.get_empty_pot()
     pot.contents.add("soil", fraction=0.5)

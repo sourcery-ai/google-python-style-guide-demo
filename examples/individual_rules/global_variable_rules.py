@@ -7,17 +7,18 @@ This example file contains pieces of code that either comply with or violate the
 global variable rule `avoid-global-variables`.
 """
 
-# violates `avoid-global-variables` because it is named like a variable, and not a
+# violation of `avoid-global-variables` because it is named like a variable, and not a
 # constant
 max_holy_handgrenade_count = 3
 
-# violates `avoid-global-variables` as well - type annotations are supported
+# violation of `avoid-global-variables` as well - type annotations are supported
 max_holy_handgrenade_count: int = 3
 
 # no violation: this is not defining a new variable, but instead setting an item
 holy_handgrenade[1] = 3
 
-# no violation: this variable is marked as internal to its module
+# no violation: this variable is marked as internal to its module with the leading
+# underscore
 _max_holy_handgrenade_count = 3
 
 # no violation: this is a type alias defined in UpperCamelCase

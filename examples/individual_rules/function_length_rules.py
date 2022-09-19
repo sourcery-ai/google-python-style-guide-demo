@@ -14,7 +14,8 @@ def count_to_forty_short() -> None:
         print(i)
 
 
-# violate `no-long-functions`: long functions are harder to maintain and to reason about
+# violation of `no-long-functions`: long functions are harder to maintain and to reason
+# about
 def count_to_forty_long() -> None:
     """Count from one to 42."""
     print(1)

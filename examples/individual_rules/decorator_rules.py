@@ -10,7 +10,7 @@ rule `do-not-use-staticmethod`.
 class EventRecommender:
     """Recommend events to users."""
 
-    # violate `do-not-use-staticmethod`
+    # violation of `do-not-use-staticmethod`
     @staticmethod
     def get_suggested_event_from_default_recommender() -> str:
         """What about watching Monty Python?"""

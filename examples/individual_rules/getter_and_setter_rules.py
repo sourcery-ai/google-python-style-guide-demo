@@ -7,7 +7,7 @@ This example file contains pieces of code that either comply with or violate the
 rule `avoid-trivial-properties`.
 """
 
-# violates `avoid-trivial-properties` because the property `name` only reads from or
+# violation of `avoid-trivial-properties` because the property `name` only reads from or
 # writes to an attribute without any extra logic
 class Student:
     """A person that studies."""

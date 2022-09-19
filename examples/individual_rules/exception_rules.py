@@ -7,22 +7,22 @@ This example file contains pieces of code that either comply with or violate the
 exception rule `errors-named-error`.
 """
 
-# violates `errors-named-error` because we `Foo` inherits from a built-in exception
+# violation of `errors-named-error` because `Foo` inherits from a built-in exception
 # type, and hence should have its name ending in `Error`
 class Foo(ValueError):
     """I should be named FooError."""
 
 
-# violates `errors-named-error` because we `CustomError` is assumed to be an exception
-# because its name ends in `Error`, and hence `ExampleException` should end in `Error`
-# as well
+# violation of `errors-named-error` because `CustomError` is assumed to be an exception
+# since its name ends in `Error`, and hence `ExampleException` should end in `Error` as
+# well
 class ExampleException(CustomError):
     """I should be named ExampleError."""
-    def __init__(self, msg):
+    def __init__(self, msg: str) -> None:
         ...
 
 
-# violate `errors-named-error` because `Exception` and `BaseException` are also
+# violations of `errors-named-error` because `Exception` and `BaseException` are also
 # exception types
 class InvalidName(Exception):
     """I should be named InvalidNameError."""
@@ -32,10 +32,10 @@ class InvalidName(BaseException):
     """I should be named InvalidNameError."""
 
 
-# no violation: the derived classes' names end in `Error`
+# no violations: the derived classes' names end in `Error`
 class MyError(Exception):
     """Yay, my name is great!"""
-    def __init__(self, msg):
+    def __init__(self, msg: str) -> None:
         ...
 
 

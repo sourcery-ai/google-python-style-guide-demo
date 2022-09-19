@@ -7,21 +7,21 @@ This example file contains pieces of code that either comply with or violate the
 rules `require-parameter-annotation` and `require-return-annotation`.
 """
 
-# violates `require-parameter-annotation`: one parameter is missing an annotation
+# violation of `require-parameter-annotation`: one parameter is missing an annotation
 def add(a, b: int) -> int:
     """Add `a` and `b`."""
     return a + b
 
 
-# violates `require-parameter-annotation`: you need annotations even if you have default
-# values
+# violation of `require-parameter-annotation`: you need annotations even if you have
+# default values
 def double(a=1) -> int:
     """Return the input multiplied by `2`."""
     return a * 2
 
 
-# violates `require-parameter-annotation`: methods also need to have their parameters
-# annotated
+# violation of `require-parameter-annotation`: methods also need to have their
+# parameters annotated
 class Calculator:
     """A device for doing some math."""
 
@@ -47,13 +47,15 @@ class Keyboard:
         return keyboard_model()
 
 
-# violate `require-return-annotation`: the function has its parameters correctly
+# violation of `require-return-annotation`: the function has its parameters correctly
 # annotated, but not the return value
 def multiply(a: int, b: int):
     """Multiply `a` and `b`."""
     return a * b
 
 
+# violation of `require-return-annotation`: even functions with no parameters must have
+# a return type annotation
 def fourty_three():
     """The answer to most questions, plus one."""
     return 43
@@ -65,7 +67,8 @@ def repeat_word(word: str, times: int) -> str:
     return word * times
 
 
-# no violation: if you have no parameters, you need no parameter annotations ;)
+# no violation: if you have no parameters, you need no parameter annotations - but you
+# still need to annotate the return type ;)
 def fourty_two() -> int:
     """The answer to most of your questions."""
     return 42
