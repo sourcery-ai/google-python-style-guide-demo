@@ -12,7 +12,8 @@
 # rules `docstrings-for-classes`, `docstrings-for-functions` and
 # `docstrings-for-modules`.
 #
-# Take a look at the top of this file: there is already a violation there.
+# Take a look at the top of this file: there is already a violation of
+# `docstrings-for-modules` there.
 
 # violations of `docstrings-for-classes`
 class CheeseShopAddress:
