@@ -30,16 +30,3 @@ class EventRecommender:
     def get_suggested_event_from_current_recommender_and_send_email(self) -> str:
         """What about watching Monty Python... again?"""
         return self.all_events.sortby(lambda event: event.score).first()
-
-    # no violation: we currently do not support intermediate decorators :(
-    # if you have a use-case for this, please open an issue at
-    # https://github.com/sourcery-ai/sourcery/issues
-    @staticmethod
-    @send_email_as_well
-    def get_suggested_event_from_default_recommender_and_send_email(self) -> str:
-        """What about watching Monty Python... again?"""
-        return (
-            EventRecommender.default_instance()
-            .all_events.sortby(lambda event: event.score)
-            .first()
-        )
