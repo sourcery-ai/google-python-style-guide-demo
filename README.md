@@ -32,14 +32,23 @@ _**<span style="color:gray">Coming soon!</span>**_
 
 ## Examples
 
-The directory [`examples`](./examples) contains example files for 
-<!-- TODO: finish this! -->
+The directory [`examples`](./examples) contains example files with code that either violates or not one or more of the GPSG rules.
+
+Try opening those files in your IDE with the [Sourcery extension](https://docs.sourcery.ai/Guides/Getting-Started/#ides) enabled to see inline diagnostics of the violations those files contain.
+
+The following images illustrate some of the diagnostics you may find:
+
+![Exception rule example](./docs/images/exception-rules-example.png)
+![Import rule example](./docs/images/import-rules-example.png)
+![Lambda rule example](./docs/images/lambda-function-example.png)
+
+<!-- TODO: add examples of running the CLI -->
 
 ### Individual Rules
 
-This directory contains individual examples for each Google Python Style Guide rule defined in the root Sourcery configuration file [`.sourcery.yaml`](./.sourcery.yaml). You can use those examples to see each rule in action separately and decide how well they fit into your team's requirements.
+The directory [`examples/individual_rules`](./examples/individual_rules) contains individual examples for each Google Python Style Guide rule defined in the root Sourcery configuration file [`.sourcery.yaml`](./.sourcery.yaml). You can use those examples to see each rule in action separately and decide how well they fit into your team's requirements.
 
-The examples are grouped according to the Google Python Style Guide sections they correspond to:
+The examples are grouped in files according to the Google Python Style Guide sections they correspond to:
 
 * [2.2 Import Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#22-import-rules): [`import_rules.py`](./examples/individual_rules/import_rules.py)
 * [2.4 Exception Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#24-exception-rules): [`exception_rules.py`](./examples/individual_rules/exception_rules.py)
