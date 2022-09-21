@@ -7,9 +7,6 @@ authors = ["Ruan Comelli <ruan@sourcery.ai>"]
 [tool.poetry.dependencies]
 python = "^3.7"
 
-[tool.poetry.dev-dependencies]
-sourcery-cli = ">=0.12.7"
-
 [tool.poetry.group.dev.dependencies]
 sourcery-cli = ">=0.12.8"
 pre-commit = ">=2.20.0"

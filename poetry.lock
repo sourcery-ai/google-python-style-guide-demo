@@ -172,7 +172,7 @@ testing = ["func-timeout", "jaraco.itertools", "pytest (>=6)", "pytest-black (>=
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "670bd94c3d62d3c714ebb214975fccfa60785f9170ff0c0da435ed62b1e96061"
+content-hash = "165d9d57d53ad60e6e2daacf8673e39635922691bbdee08becf5def19e4267cf"
 
 [metadata.files]
 cfgv = [
