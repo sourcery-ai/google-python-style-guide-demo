@@ -32,9 +32,12 @@ _**<span style="color:gray">Coming soon!</span>**_
 
 ## Examples
 
+The directory [`examples`](./examples) contains example files for 
+<!-- TODO: finish this! -->
+
 ### Individual Rules
 
-This directory contains individual examples for each Google Python Style Guide rule defined in the root Sourcery configuration file [`.sourcery.yaml`](./.sourcery.yaml).
+This directory contains individual examples for each Google Python Style Guide rule defined in the root Sourcery configuration file [`.sourcery.yaml`](./.sourcery.yaml). You can use those examples to see each rule in action separately and decide how well they fit into your team's requirements.
 
 The examples are grouped according to the Google Python Style Guide sections they correspond to:
 
