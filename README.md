@@ -10,7 +10,7 @@ Demonstration repository using [Sourcery](https://sourcery.ai/) to enforce the [
 -->
 _**<span style="color:gray">Coming soon!</span>**_
 
-## Local Setup
+## Getting Started
 
 <!-- 
 	TODO: add this section, describing how to clone this repository and get started in
@@ -30,7 +30,7 @@ _**<span style="color:gray">Coming soon!</span>**_
 <!-- TODO: add this section -->
 _**<span style="color:gray">Coming soon!</span>**_
 
-## Examples
+## Navigating the Examples
 
 The directory [`examples`](./examples) contains example files with code that either violates or not one or more of the GPSG rules.
 
@@ -43,6 +43,7 @@ The following images illustrate some of the diagnostics you may find:
 ![Lambda rule example](./docs/images/lambda-function-example.png)
 
 <!-- TODO: add examples of running the CLI -->
+<!-- TODO: to avoid noise, perhaps create a specific README in `examples` -->
 
 ### Individual Rules
 
@@ -64,6 +65,12 @@ The examples are grouped in files according to the Google Python Style Guide sec
 * [3.18 Function Length Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#318-function-length-rules): [`function_length_rules.py`](./examples/individual_rules/function_length_rules.py)
 
 ### Real-World Examples
+
+<!-- TODO: add this section -->
+_**<span style="color:gray">Coming soon!</span>**_
+
+
+## How to get this working on my project
 
 <!-- TODO: add this section -->
 _**<span style="color:gray">Coming soon!</span>**_
