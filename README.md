@@ -21,7 +21,9 @@ To check out this project in an IDE, first make sure that you have the [Sourcery
 
 If you already have everything set up, [go ahead and check out the examples](#navigating-the-examples) in the directory [`examples`](./examples).
 
-<!-- TODO: prompt users to (1) take a look at the `.sourcery.yaml` file, and (2) add this to their own repo -->
+After you have checked out _what_ the Sourcery implementation of the Google Python Style Guide can do, take a look at the [Sourcery configuration file](./.sourcery.yaml) to understand [_how_ it does it](#the-style-guide-as-rules).
+
+Finally, [add Sourcery + GPSG to your own project](#use-this-in-your-project) to get immediate feedback and enforce some of the best practices described by the Google Python Style Guide.
 
 ## Navigating the Examples
 
@@ -135,6 +137,20 @@ The examples are grouped in files according to the Google Python Style Guide sec
 <!-- TODO: add this section -->
 _**<span style="color:gray">Coming soon!</span>**_
 
+## The Style Guide as Rules
+
+<!-- 
+	TODO: add this section.
+
+	Explain briefly what the configuration file is, and what custom rules are, including
+	links to the docs.
+	This section should incentivize users to open the config file and change it.
+	Add an example for a change that _we_ at Sourcery did: we allowed `__dunder__` 
+	methods to not have docs, since we believe that they are "self-evident". Explain 
+	this and show how people could do it.
+-->
+_**<span style="color:gray">Coming soon!</span>**_
+
 ## Integrations
 
 ### Pre-commit
@@ -149,7 +165,7 @@ Make sure you have [pre-commit installed](https://pre-commit.com/#install) toget
 _**<span style="color:gray">Coming soon!</span>**_
 
 
-## How to get this working on my project
+## Use this in your project
 
 <!-- TODO: add this section -->
 _**<span style="color:gray">Coming soon!</span>**_
