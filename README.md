@@ -4,32 +4,24 @@ Demonstration repository using [Sourcery](https://sourcery.ai/) to enforce the [
 
 ## Overview
 
-<!-- 
-	TODO: add this section, describing what exactly we want to achieve here, and why
-	this is useful to our users.
--->
-_**<span style="color:gray">Coming soon!</span>**_
+This repository was created by us at [Sourcery](https://sourcery.ai/) to demonstrate our implementation of the Google Python Style Guide (GPSG) as Sourcery rules that you can incorporate into your project.
+
+Here, we provide [examples of Python code](#navigating-the-examples) that intentionally violate the style guidelines, as well as [a set of custom rules](./.sourcery.yaml) that allow Sourcery to identify and flag them.
 
 ## Getting Started
 
-<!-- 
-	TODO: add this section, describing how to clone this repository and get started in
-	order to see Sourcery in action
--->
-_**<span style="color:gray">Coming soon!</span>**_
+The first step to try this demo out is to clone and open it:
 
-## Integrations
+```bash
+git clone https://github.com/sourcery-ai/google-python-style-guide-demo.git
+cd google-python-style-guide-demo
+```
 
-### Pre-commit
+To check out this project in an IDE, first make sure that you have the [Sourcery extension installed in your favorite IDE](https://docs.sourcery.ai/Guides/Getting-Started/#ides). If you prefer to test out the Sourcery CLI instead, [make sure you have it installed in your current environment](https://docs.sourcery.ai/Guides/Getting-Started/Command-Line/). Do not refrain from testing both the IDE integrations and the CLI!
 
-The file [`.pre-commit-config.yaml`](./.pre-commit-config.yaml) configures [pre-commit](https://pre-commit.com/) to run the [Sourcery pre-commit hook](https://docs.sourcery.ai/Guides/Getting-Started/Command-Line/#pre-commit-hook).
+If you already have everything set up, [go ahead and check out the examples](#navigating-the-examples) in the directory [`examples`](./examples).
 
-Make sure you have [pre-commit installed](https://pre-commit.com/#install) together with its [git hook scripts](https://pre-commit.com/#3-install-the-git-hook-scripts). The first time the Sourcery pre-commit hook is executed, you will be prompted to log in to Sourcery if you are not already logged in. Please follow the [login instructions from our docs](https://docs.sourcery.ai/Guides/Getting-Started/Command-Line/#login) to get Sourcery set up and ready to work with pre-commit!
-
-### GitHub Action
-
-<!-- TODO: add this section -->
-_**<span style="color:gray">Coming soon!</span>**_
+<!-- TODO: prompt users to (1) take a look at the `.sourcery.yaml` file, and (2) add this to their own repo -->
 
 ## Navigating the Examples
 
@@ -139,6 +131,19 @@ The examples are grouped in files according to the Google Python Style Guide sec
 * [3.18 Function Length Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#318-function-length-rules): [`function_length_rules.py`](./examples/individual_rules/function_length_rules.py)
 
 ### Real-World Examples
+
+<!-- TODO: add this section -->
+_**<span style="color:gray">Coming soon!</span>**_
+
+## Integrations
+
+### Pre-commit
+
+The file [`.pre-commit-config.yaml`](./.pre-commit-config.yaml) configures [pre-commit](https://pre-commit.com/) to run the [Sourcery pre-commit hook](https://docs.sourcery.ai/Guides/Getting-Started/Command-Line/#pre-commit-hook).
+
+Make sure you have [pre-commit installed](https://pre-commit.com/#install) together with its [git hook scripts](https://pre-commit.com/#3-install-the-git-hook-scripts). The first time the Sourcery pre-commit hook is executed, you will be prompted to log in to Sourcery if you are not already logged in. Please follow the [login instructions from our docs](https://docs.sourcery.ai/Guides/Getting-Started/Command-Line/#login) to get Sourcery set up and ready to work with pre-commit!
+
+### GitHub Action
 
 <!-- TODO: add this section -->
 _**<span style="color:gray">Coming soon!</span>**_
