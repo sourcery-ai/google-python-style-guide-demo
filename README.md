@@ -4,7 +4,9 @@ Demonstration repository using [Sourcery](https://sourcery.ai/) to enforce the [
 
 ## Overview
 
-This repository was created by us at [Sourcery](https://sourcery.ai/) to demonstrate our implementation of the Google Python Style Guide (GPSG) as Sourcery rules that you can incorporate into your project.
+This repository was created by us at [Sourcery](https://sourcery.ai/) to demonstrate our implementation of the [Google Python Style Guide (GPSG)](https://sourcery.ai/blog/google-python-style-guide/) as [Sourcery rules](https://docs.sourcery.ai/Tutorials/Custom-Rules/) that you can incorporate into your project.
+
+By bringing in one of the best Python style guides available out there and automatically enforcing it with Sourcery, you help your entire team to follow the best programming practices, increasing your code quality, speeding up development and reducing the chances of introducing bugs.
 
 Here, we provide [examples of Python code](#navigating-the-examples) that intentionally violate the style guidelines, as well as [a set of custom rules](./.sourcery.yaml) that allow Sourcery to identify and flag them.
 
