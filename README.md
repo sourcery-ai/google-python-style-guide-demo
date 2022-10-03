@@ -8,7 +8,7 @@ This repository was created by us at [Sourcery](https://sourcery.ai/) to demonst
 
 By bringing in one of the best Python style guides available out there and automatically enforcing it with Sourcery, you help your entire team to follow the best programming practices, increasing your code quality, speeding up development and reducing the chances of introducing bugs.
 
-Here, we provide [examples of Python code](#navigating-the-examples) that intentionally violate the style guidelines as well as examples of code that follow it, together with [a set of custom rules](./.sourcery.yaml) that allows Sourcery to identify and flag them.
+Here, we provide [examples of Python code](#navigating-the-examples) that intentionally violate the style guide as well as examples of code that follow it, together with [a set of custom rules](./.sourcery.yaml) that allows Sourcery to identify and flag them.
 
 ## Getting Started
 
