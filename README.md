@@ -23,9 +23,13 @@ To check out this project in an IDE, first make sure that you have the [Sourcery
 
 If you already have everything set up, [go ahead and check out the examples](#navigating-the-examples) in the directory [`examples`](./examples).
 
-After you have checked out _what_ the Sourcery implementation of the Google Python Style Guide can do, take a look at the [Sourcery configuration file](./.sourcery.yaml) to understand [_how_ it does it](#the-style-guide-as-rules).
+After you have checked out _what_ the Sourcery implementation of the Google Python Style Guide can do, take a look at the [Sourcery configuration file](./.sourcery.yaml) to understand _how_ it does it. <!-- TODO: add link to #the-style-guide-as-rules once that section is ready -->
 
-Finally, [add Sourcery + GPSG to your own project](#use-this-in-your-project) to get immediate feedback and enforce some of the best practices described by the Google Python Style Guide.
+<!-- 
+	TODO: add the following lines once the last section is ready
+	
+	Finally, [add Sourcery + GPSG to your own project](#use-this-in-your-project) to get immediate feedback and enforce some of the best practices described by the Google Python Style Guide. 
+-->
 
 ## Navigating the Examples
 
@@ -134,15 +138,11 @@ The examples are grouped in files according to the Google Python Style Guide sec
 * [3.16 Naming Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#316-naming-rules): [`naming_rules.py`](./examples/individual_rules/naming_rules.py)
 * [3.18 Function Length Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#318-function-length-rules): [`function_length_rules.py`](./examples/individual_rules/function_length_rules.py)
 
-### Real-World Examples
 
-<!-- TODO: add this section -->
-_**<span style="color:gray">Coming soon!</span>**_
-
-## The Style Guide as Rules
+<!-- TODO: ### Real-World Examples -->
 
 <!-- 
-	TODO: add this section.
+	TODO: ## The Style Guide as Rules
 
 	Explain briefly what the configuration file is, and what custom rules are, including
 	links to the docs.
@@ -151,7 +151,6 @@ _**<span style="color:gray">Coming soon!</span>**_
 	methods to not have docs, since we believe that they are "self-evident". Explain 
 	this and show how people could do it.
 -->
-_**<span style="color:gray">Coming soon!</span>**_
 
 ## Integrations
 
@@ -161,13 +160,6 @@ The file [`.pre-commit-config.yaml`](./.pre-commit-config.yaml) configures [pre-
 
 Make sure you have [pre-commit installed](https://pre-commit.com/#install) together with its [git hook scripts](https://pre-commit.com/#3-install-the-git-hook-scripts). The first time the Sourcery pre-commit hook is executed, you will be prompted to log in to Sourcery if you are not already logged in. Please follow the [login instructions from our docs](https://docs.sourcery.ai/Guides/Getting-Started/Command-Line/#login) to get Sourcery set up and ready to work with pre-commit!
 
-### GitHub Action
+<!-- TODO: ### GitHub Action -->
 
-<!-- TODO: add this section -->
-_**<span style="color:gray">Coming soon!</span>**_
-
-
-## Use this in your project
-
-<!-- TODO: add this section -->
-_**<span style="color:gray">Coming soon!</span>**_
+<!-- TODO: ## Use this in your project -->
