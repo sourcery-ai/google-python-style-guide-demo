@@ -139,7 +139,16 @@ The examples are grouped in files according to the Google Python Style Guide sec
 * [3.18 Function Length Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#318-function-length-rules): [`function_length_rules.py`](./examples/individual_rules/function_length_rules.py)
 
 
-<!-- TODO: ### Real-World Examples -->
+### Real-World Examples
+
+The directory [`examples/real_world`](./examples/real_world) contains real-world examples extracted from real projects out there - actually, from projects written by us at Sourcery.
+This way, you can see how the Google Python Style Guide helps us to find issues in actual code that people have actually written.
+
+Currently, that directory contains code extracted from:
+
+* [`sourcery/sourcery-analytics`](https://github.com/sourcery-ai/sourcery-analytics): (yes, we at Sourcery violate the GPSG once in a while)
+	* [`sourcery-analytics/cli/partials.py`](https://github.com/sourcery-ai/sourcery-analytics/blob/d605829bbc0e3ae84decf21998c26df8980c66b9/sourcery_analytics/cli/partials.py): [sourcery_analytics_cli_partials.py](./examples/real_world/sourcery_analytics_cli_partials.py)
+	* [`sourcery-analytics/metrics/compounders.py`](https://github.com/sourcery-ai/sourcery-analytics/blob/d605829bbc0e3ae84decf21998c26df8980c66b9/sourcery_analytics/metrics/compounders.py): [sourcery_analytics_metrics_compounders.py](./examples/real_world/sourcery_analytics_metrics_compounders.py)
 
 <!-- 
 	TODO: ## The Style Guide as Rules
