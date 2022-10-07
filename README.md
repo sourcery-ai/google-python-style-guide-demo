@@ -146,7 +146,7 @@ This way, you can see how the Google Python Style Guide helps us to find issues 
 
 Currently, that directory contains code extracted from:
 
-* [`sourcery/sourcery-analytics`](https://github.com/sourcery-ai/sourcery-analytics): (yes, we at Sourcery violate the GPSG once in a while)
+* [`sourcery-ai/sourcery-analytics`](https://github.com/sourcery-ai/sourcery-analytics): (yes, we at Sourcery violate the GPSG once in a while)
 	* [`sourcery-analytics/cli/partials.py`](https://github.com/sourcery-ai/sourcery-analytics/blob/d605829bbc0e3ae84decf21998c26df8980c66b9/sourcery_analytics/cli/partials.py): [sourcery_analytics_cli_partials.py](./examples/real_world/sourcery_analytics_cli_partials.py)
 	* [`sourcery-analytics/metrics/compounders.py`](https://github.com/sourcery-ai/sourcery-analytics/blob/d605829bbc0e3ae84decf21998c26df8980c66b9/sourcery_analytics/metrics/compounders.py): [sourcery_analytics_metrics_compounders.py](./examples/real_world/sourcery_analytics_metrics_compounders.py)
 
