@@ -33,6 +33,10 @@ rules:
 # 
 # The following rules instruct Sourcery to help making sure that the Google Python Style
 # Guide is respected in this project.
+# 
+# The [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html) was 
+# created by [Google](https://github.com/google) and published under the 
+# [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/legalcode) license.
 
 # ----------------------------------------------------------------------------------
 # [2.2 Import Rules](https://docs.sourcery.ai/Reference/Custom-Rules/gpsg/#22-import-rules)
