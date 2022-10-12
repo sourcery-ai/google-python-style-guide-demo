@@ -17,6 +17,7 @@ ignore:
 - .venv
 - env
 - .env
+- .tox
 
 refactor:
   rule_types:
@@ -258,7 +259,7 @@ rules:
 
 - id: avoid-global-variables
   pattern: ${var} = ${value}
-  condition: pattern.in_module_scope() and var.is_lower_case() and not var.starts_with("_") and var.is_identifier()
+  condition: pattern.in_module_scope() and var.is_lower_case() and not var.starts_with("_") and var.is_identifier() and not var.contains("logger")
   description: Do not define variables at the module level - (found variable ${var})
   explanation: |
     Avoid global variables.
@@ -478,8 +479,8 @@ rules:
   condition: not name.starts_with("_") and not arg.equals("self") and not arg.equals("cls")
   paths:
     exclude:
-      - test/
-      - tests/
+      - 'test_*.py'
+      - '*_test.py'
   description: Annotate parameter `${arg}` in public function/method `${name}` with a type annotation
   explanation: |
     Adding type annotations has several benefits:
@@ -519,8 +520,8 @@ rules:
   condition: not name.starts_with("_")
   paths:
     exclude:
-      - test/
-      - tests/
+      - 'test_*.py'
+      - '*_test.py'
   description: Annotate public function/method `${name}` with a return type annotation
   explanation: |
     Adding type annotations has several benefits:
@@ -572,8 +573,8 @@ rules:
   condition: not c.starts_with("_")
   paths:
     exclude:
-      - test/
-      - tests/
+      - 'test_*.py'
+      - '*_test.py'
   tests:
     - match: |
         class CheeseShopAddress:
@@ -614,8 +615,8 @@ rules:
   condition: not ((f.starts_with("_") and body.statement_count() < 5) or pattern.in_function_scope())
   paths:
     exclude:
-      - test/
-      - tests/
+      - 'test_*.py'
+      - '*_test.py'
   tests:
     - match: |
         def grow(plant):
@@ -656,8 +657,8 @@ rules:
   condition: pattern.in_module_scope()
   paths:
     exclude:
-      - test/
-      - tests/
+      - 'test_*.py'
+      - '*_test.py'
   description: Modules should have docstrings
   explanation: |
     Modules (Python files) should start with docstrings describing the contents and usage of the module.
