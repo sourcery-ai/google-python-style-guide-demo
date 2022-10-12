@@ -172,3 +172,7 @@ Make sure you have [pre-commit installed](https://pre-commit.com/#install) toget
 <!-- TODO: ### GitHub Action -->
 
 <!-- TODO: ## Use this in your project -->
+
+## Licensing
+
+This repository contains an implementation of the [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html) as [Sourcery](https://sourcery.ai/) rules. The style guide itself was created by [Google](https://github.com/google) and published under the [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/legalcode) license.
